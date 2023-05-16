@@ -55,6 +55,9 @@ def getExpectedResult(rule, resource):
         if 'kinds' in str(rule['exclude']) and resource['metadata']['name'] in rule['exclude']['any'][0]['resources']['names']:
             shouldExclude = 1
 
+    if 'mutate' in rule.keys():
+        shouldExclude = 1
+
     match shouldExclude:
         case 0:
             return 'pass'
